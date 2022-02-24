@@ -1,6 +1,6 @@
 %function Oimg = FOMA(Ipath)
 img = imread('./img_datasets/standard_256/lake_256.tif');
-nimg = imnoise(img,'salt & pepper',0.3);
+nimg = imnoise(img,'salt & pepper',0.6);
 [r,c] = size(nimg);
 p=3;
 a=[];
@@ -16,10 +16,6 @@ for i = 1+p:r+p
         else
             flg(i - p, j - p) = 1;
         end
-    end
-end
-for i = 1+p:r+p
-    for j = 1+p:c+p
         if (pimg(i,j)==0)||(pimg(i,j)==255)
             w = Oimg(i-k:i+k,j-k:j+k);% forming the matrix window
             w(w==0)=[];
@@ -76,4 +72,3 @@ end
 subplot(1,3,1); imshow(img);
 subplot(1,3,2); imshow(nimg);
 subplot(1,3,3); imshow(Oimg);
-
